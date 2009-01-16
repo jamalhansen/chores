@@ -1,5 +1,6 @@
 ENV["RAILS_ENV"] = "test"
 require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
+require File.expand_path(File.dirname(__FILE__) + "/blueprints")
 require 'test_help'
 
 class Test::Unit::TestCase
@@ -32,7 +33,11 @@ class Test::Unit::TestCase
   #
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
-  fixtures :all
+  #fixtures :all
 
   # Add more helper methods to be used by all tests here...
+end
+
+def specify *args, &block
+  test(*args, &block)
 end
