@@ -1,0 +1,16 @@
+<% form_for(@child) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :nickname %><br />
+    <%= f.text_field :nickname %>
+  </p>
+  
+  <p>
+    <%= f.label :open_identifier %><br />
+    <%= f.text_field :open_identifier %>
+  </p>
+
+  <%= f.submit "Add" %>
+  </p>
+<% end %>

@@ -9,12 +9,40 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090109221900) do
+ActiveRecord::Schema.define(:version => 20090125184610) do
+
+  create_table "children", :force => true do |t|
+    t.integer  "parent_id",  :null => false
+    t.integer  "child_id",   :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "chores", :force => true do |t|
     t.string   "description", :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "identities", :force => true do |t|
+    t.string   "identifier", :limit => 100, :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "open_id_authentication_associations", :force => true do |t|
+    t.integer "issued"
+    t.integer "lifetime"
+    t.string  "handle"
+    t.string  "assoc_type"
+    t.binary  "server_url"
+    t.binary  "secret"
+  end
+
+  create_table "open_id_authentication_nonces", :force => true do |t|
+    t.integer "timestamp",  :null => false
+    t.string  "server_url"
+    t.string  "salt",       :null => false
   end
 
 end
