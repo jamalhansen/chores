@@ -6,6 +6,8 @@ require 'cucumber/formatters/unicode' # Comment out this line if you don't want 
 Cucumber::Rails.use_transactional_fixtures
 
 require 'webrat/rails'
+Webrat.configure do |config|                                                                                  config.mode = :rails                                                                          
+end      
 
 $KCODE=''
 
