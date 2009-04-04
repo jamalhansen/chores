@@ -1,0 +1,15 @@
+<table>
+  <tr>
+    <td>
+        <%= openid_logo %>
+      
+    </td>
+    <td>
+      <% if logged_in? %>
+        <%= link_to current_identity.display, current_identity.identifier %> | <%= link_to "Logout", logout_url %>
+      <% else %>
+        <%= render :partial => 'sessions/login'  %>
+      <% end %>
+    </td>
+  </tr>
+</table>
