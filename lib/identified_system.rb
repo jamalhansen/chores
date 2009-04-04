@@ -15,7 +15,7 @@ module IdentifiedSystem
 
     # Store the given identity id in the session.
     def current_identity=(new_identity)
-      session[:identity_id] = new_identity ? new_identity.id : nil
+      identity_id_from_session = new_identity ? new_identity.id : nil
       @current_identity = new_identity || false
     end
 
@@ -74,14 +74,14 @@ module IdentifiedSystem
     #
     # We can return to this location by calling #redirect_back_or_default.
     def store_location
-      session[:return_to] = request.request_uri
+      return_to_request = request.request_uri
     end
 
     # Redirect to the URI stored by the most recent store_location call or
     # to the passed default.
     def redirect_back_or_default(default)
-      redirect_to(session[:return_to] || default)
-      session[:return_to] = nil
+      redirect_to(return_to_request || default)
+      return_to_request = nil
     end
 
     # Inclusion hook to make #current_identity and #logged_in?
@@ -92,6 +92,22 @@ module IdentifiedSystem
 
     # Called from #current_identity.  First attempt to login by the identity id stored in the session.
     def login_from_session
-      self.current_identity = Identity.find_by_id(session[:identity_id]) if session[:identity_id]
+      current_identity = Identity.find_by_id(identity_id_from_session) if identity_id_from_session
+    end
+
+    def identity_id_from_session
+      session[:identity_id]
+    end
+
+    def identity_id_from_session= id
+      session[:identity_id] = id
+    end
+
+    def return_to_request
+      session[:return_to]
+    end
+
+    def return_to_request= url
+      session[:return_to] = url
     end
 end

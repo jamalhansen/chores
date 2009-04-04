@@ -3,6 +3,8 @@ require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require File.expand_path(File.dirname(__FILE__) + "/blueprints")
 require 'test_help'
 require 'faker'
+require 'identified_test_helper'
+include IdentifiedTestHelper
 
 class Test::Unit::TestCase
   self.use_transactional_fixtures = true
@@ -28,8 +30,14 @@ class Test::Unit::TestCase
   def valid_open_id
     "test.example.com"
   end
+  
+  def invalid_open_id
+    "bad_id"
+  end
+    
 end
 
 def specify *args, &block
   test(*args, &block)
 end
+

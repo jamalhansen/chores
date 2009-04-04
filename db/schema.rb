@@ -9,13 +9,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090125184610) do
+ActiveRecord::Schema.define(:version => 20090402191006) do
 
   create_table "children", :force => true do |t|
     t.integer  "parent_id",  :null => false
     t.integer  "child_id",   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "nickname"
   end
 
   create_table "chores", :force => true do |t|

@@ -3,6 +3,11 @@ require 'test_helper'
 class ChoresCanCrud < ActionController::TestCase
   tests ChoresController
   
+  setup do
+    id = Identity.make :identifier => "foo.example.com"
+    login_as id
+  end
+  
   specify "test that it should respond to index" do
     get :index
     assert_response :success

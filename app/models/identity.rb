@@ -10,7 +10,12 @@ class Identity < ActiveRecord::Base
                                             :message => "is too long."
                                             
   validate_on_create :valid_id
-  
+
+  has_many :parents,             :foreign_key => :parent_id,
+                                 :class_name => 'Child'
+  has_many :children,            :foreign_key => :child_id,
+                                 :class_name => 'Child'  
+
   def open_id
     return nil if self.identifier.nil?
     self.identifier[7..-2]
@@ -33,6 +38,20 @@ class Identity < ActiveRecord::Base
   def self.find_by_open_id open_id
     id = OpenIdAuthentication::normalize_identifier(open_id)
     find_by_identifier open_id
+  end
+
+  def self.find_or_make_if_valid open_id
+    begin
+      id = self.find_by_open_id open_id
+    rescue OpenIdAuthentication::InvalidOpenId
+      return nil
+    end
+
+    unless id
+      id = Identity.new :identifier => open_id 
+      id.save
+    end
+    id
   end
   
   protected

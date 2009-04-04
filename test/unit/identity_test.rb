@@ -60,11 +60,7 @@ class IdentityShouldBeValidatedTest < ActiveSupport::TestCase
     def hundred_and_one_character_identifier
       "http://This.is.a.hundred1.character.description.one.hundred.chatacters.is.not.too.long.but.it.of.com/"
     end
-       
-    def invalid_open_id
-      "bad_id"
-    end
-    
+
 end
 
 class IdentityOpenIdShouldSetIdentifierTest < ActiveSupport::TestCase
@@ -116,4 +112,21 @@ class IdentityShouldBeFoundByOpenID < ActiveSupport::TestCase
     identity_from_db = Identity.find_by_open_id valid_identifier
     assert_equal identity.identifier, identity.identifier
   end
+
+  specify "that find_or_make_if_valid will return the existing value" do
+    oid = Identity.make :identifier => valid_open_id
+    oid_from_db = Identity.find_or_make_if_valid valid_open_id
+    assert_equal oid.open_id, oid_from_db.open_id
+  end
+
+  specify "that find_or_make_if_valid will create a new identity if none exists" do
+    oid = Identity.find_or_make_if_valid valid_open_id
+    assert_equal valid_open_id, oid.open_id
+  end
+
+  specify "that find_or_make_if_valid will return nil is the identifier is not valid" do
+    assert_nil Identity.find_or_make_if_valid invalid_open_id
+  end
 end
+
+
