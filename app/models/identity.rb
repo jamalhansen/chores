@@ -42,7 +42,7 @@ class Identity < ActiveRecord::Base
 
   def self.find_or_make_if_valid open_id
     begin
-      id = self.find_by_open_id open_id
+      id = self.find_by_open_id Identity.normalize_identifier(open_id)
     rescue OpenIdAuthentication::InvalidOpenId
       return nil
     end

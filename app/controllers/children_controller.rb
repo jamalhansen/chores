@@ -11,6 +11,7 @@ class ChildrenController < ApplicationController
     @child = Child.new(params[:child])
     @child.parent = current_identity
 
+
     if @child.save
       flash[:message] = "Child added."
       redirect_to children_url
