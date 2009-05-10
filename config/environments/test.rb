@@ -20,3 +20,8 @@ config.action_controller.allow_forgery_protection    = false
 # The :test delivery method accumulates sent emails in the
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
+
+config.gem "cucumber", :version => '0.3.1'
+config.gem "webrat", :version => '0.4.4'
+config.gem "notahat-machinist", :lib => 'machinist', :version => '0.3.1'
+config.gem "faker", :version => '0.3.1'

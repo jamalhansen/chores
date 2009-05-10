@@ -3,8 +3,6 @@ require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require File.expand_path(File.dirname(__FILE__) + "/blueprints")
 require 'test_help'
 require 'faker'
-require 'identified_test_helper'
-include IdentifiedTestHelper
 
 class Test::Unit::TestCase
   self.use_transactional_fixtures = true
@@ -25,6 +23,10 @@ class Test::Unit::TestCase
   
   def valid_identifier
     "http://test.example.com/"
+  end
+
+  def build_session_hash_for identity
+    @session_hash = {'identity_id' => identity.id}
   end
   
   def valid_open_id

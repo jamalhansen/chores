@@ -1,13 +1,13 @@
-Given /^I am on the homepage$/ do
-  visits '/'
-end
+require File.expand_path(File.join(File.dirname(__FILE__), "..", "..", "test", "test_helper"))
+require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
+include NavigationHelpers
 
 When /^I fill in the chore with "(.*)"$/ do |chore_text|
-  fills_in 'chore[description]', :with => chore_text 
+  fill_in 'chore[description]', :with => chore_text
 end
 
-When /^I press Add$/ do
-  clicks_button
+Given /^I am logged in as "(.*)"$/ do |identifier|
+  post '/session', :openid_url => Identity.normalize_identifier(identifier)
 end
 
 

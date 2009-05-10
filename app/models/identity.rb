@@ -54,13 +54,21 @@ class Identity < ActiveRecord::Base
     id
   end
   
+    def Identity.normalize_identifier id
+    begin
+      identifier = OpenIdAuthentication::normalize_identifier(id)
+    rescue OpenIdAuthentication::InvalidOpenId
+      identifier = nil
+    end
+    identifier
+  end
+
   protected
   def normalize_id id
-    begin
-      identifier = normalize_identifier(id)
-    rescue OpenIdAuthentication::InvalidOpenId
-      identifier = id
+    identifier = Identity.normalize_identifier id
+    unless identifier
       @invalid_id = true
+      identifier = id
     end
     identifier
   end
