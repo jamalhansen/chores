@@ -3,6 +3,8 @@ require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require File.expand_path(File.dirname(__FILE__) + "/blueprints")
 require 'test_help'
 require 'faker'
+require 'machinist'
+require 'shoulda'
 
 class Test::Unit::TestCase
   self.use_transactional_fixtures = true
@@ -36,10 +38,23 @@ class Test::Unit::TestCase
   def invalid_open_id
     "bad_id"
   end
-    
-end
 
-def specify *args, &block
-  test(*args, &block)
+
+      def hundred_character_identifier
+        "http://This.is.a.hundred.character.description.one.hundred.chatacters.is.not.too.long.but.it.of.com/"
+      end
+
+      def hundred_and_one_character_identifier
+        "http://This.is.a.hundred1.character.description.one.hundred.chatacters.is.not.too.long.but.it.of.com/"
+      end
+
+  def two_hundred_fifty_character_string
+    "This is a really long string that is the description of a chore and it is used to validate that the chore model will accept a string of 255 characters.  This string is longer than the longest string ever which also included some numbers 012345678901234567"
+  end
+
+  def two_hundred_fifty_one_character_string
+    two_hundred_fifty_character_string + "1"
+  end
+    
 end
 

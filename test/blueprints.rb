@@ -1,3 +1,7 @@
+require 'machinist/active_record'
+require 'sham'
+require 'faker'
+
 Chore.blueprint do
   description "Put the dirty clothes in the hamper"
 end

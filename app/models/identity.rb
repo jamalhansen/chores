@@ -37,7 +37,7 @@ class Identity < ActiveRecord::Base
   
   def self.find_by_open_id open_id
     id = OpenIdAuthentication::normalize_identifier(open_id)
-    find_by_identifier open_id
+    find_by_identifier id
   end
 
   def self.find_or_make_if_valid open_id

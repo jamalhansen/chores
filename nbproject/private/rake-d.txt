@@ -38,7 +38,6 @@ doc\:clobber_plugins=Remove plugin documentation
 doc\:clobber_rails=Remove rdoc products
 doc\:guides=Generate Rails guides
 doc\:plugins=Generate documentation for all installed plugins
-doc\:plugins\:machinist=Generate documentation for the machinist plugin
 doc\:plugins\:open_id_authentication=Generate documentation for the open_id_authentication plugin
 doc\:rails=Build the RDOC HTML Files
 doc\:reapp=Force a rebuild of the RDOC files

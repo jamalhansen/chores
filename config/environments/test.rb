@@ -21,7 +21,8 @@ config.action_controller.allow_forgery_protection    = false
 # ActionMailer::Base.deliveries array.
 config.action_mailer.delivery_method = :test
 
-config.gem "cucumber", :version => '0.3.1'
+config.gem "cucumber", :version => '0.3.11'
 config.gem "webrat", :version => '0.4.4'
-config.gem "notahat-machinist", :lib => 'machinist', :version => '0.3.1'
+config.gem "notahat-machinist", :lib => 'machinist', :version => '1.0.3'
 config.gem "faker", :version => '0.3.1'
+config.gem "technicalpickles-shoulda", :lib => "shoulda", :version => "2.10.0"
